@@ -208,15 +208,16 @@ class PhotoGrid extends Component {
         return (
             <View style={[styles.container]}>
                 {this.renderGrid()}
-
                 <View >
                     <Modal
                         animationType={"fade"}
                         transparent={false}
                         onRequestClose={() => { }}
                         visible={this.state.modalVisible}>
-
-                        <TouchableOpacity onPress={() => { this.photoPopupToggle() }}>
+                        <TouchableOpacity
+                            onPress={() => { this.photoPopupToggle() }}
+                            underlayColor='transparent'
+                            style={{backgroundColor: 'black'}}>
                             <Image
                                 source={{ uri: this.state.photoUrl }}
                                 onPress={() => { this.photoPopupToggle() }}
@@ -227,13 +228,9 @@ class PhotoGrid extends Component {
                                     alignSelf: 'center',
                                 }} />
                         </TouchableOpacity>
-
                     </Modal>
                 </View>
-                
             </View>
-
-
         )
     }
 
