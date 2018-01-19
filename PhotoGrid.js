@@ -4,43 +4,26 @@
 import React, { Component } from 'react';
 import { View, Image, Dimensions, Modal, TouchableOpacity } from 'react-native';
 import * as _ from 'lodash';
+import ZoomImage from 'react-native-zoom-image';
 
 class PhotoGrid extends Component {
-
     constructor(props) {
         super(props)
-        this.state = {
-            modalVisible: false,
-            photoUrl: '',
-        };
-
     }
-
-    photoPopupToggle(photoUrl) {
-        this.setState({ modalVisible: !this.state.modalVisible, photoUrl });
-    }
-
     renderChunk() {
         let chunk = _.chunk(this.props.PhotosList, 9);
-
         return chunk.map(
             (chunkItem, index) => {
                 let row = _.chunk(chunkItem, 3);
-
                 return row.map(
                     (rowItem, rowIndex) => {
-
                         return this.renderPhotoRow(rowItem, rowIndex);
                     }
-                )
-
+                );
             }
-        )
-
-
+        );
     }
     renderPhotoRow(rowItem, rowIndex) {
-
         if (rowIndex == 0) {
             return this.renderPhotoRow1(rowItem);
         }
@@ -50,10 +33,8 @@ class PhotoGrid extends Component {
         else if (rowIndex == 2) {
             return this.renderPhotoRow3(rowItem);
         }
-
     }
     renderPhotoRow1(row) {
-        console.log('row', row);
         return (
             <View key={1} style={styles.alignCenter}>
                 {
@@ -61,185 +42,196 @@ class PhotoGrid extends Component {
                         (item, index) => {
                             return (
                                 <View key={index} style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                                    <TouchableOpacity onPress={() => { this.photoPopupToggle(item.url) }}>
-                                        <Image source={{ uri: item.url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                                    </TouchableOpacity>
+                                    <ZoomImage
+                                        source={{uri: item.url}}
+                                        imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                        style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                        duration={200}
+                                        enableScaling={false}
+                                    />
                                 </View>
-                            )
+                            );
                         }
-
                     )
                 }
-
             </View>
-        )
+        );
     }
     renderPhotoRow2(row) {
-
         if (row.length == 1) {
             return (
                 <View key={row[0].url} style={styles.alignCenter}>
                     <View key={row[0].url} style={[styles.expandedView, { borderRadius: this.props.borderRadius }]}>
-                        <TouchableOpacity onPress={() => { this.photoPopupToggle(row[0].url) }}>
-                            <Image source={{ uri: row[0].url }} style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]} />
-                        </TouchableOpacity>
+                        <ZoomImage
+                            source={{uri: row[0].url}}
+                            imgStyle={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            duration={200}
+                            enableScaling={false}
+                        />
                     </View>
                 </View>
-            )
+            );
         }
         else if (row.length == 2) {
             return (
                 <View key={row[0].url} style={styles.alignCenter}>
                     <View key={row[0].url} style={[styles.expandedView, { borderRadius: this.props.borderRadius }]}>
-                        <TouchableOpacity onPress={() => { this.photoPopupToggle(row[0].url) }}>
-                            <Image source={{ uri: row[0].url }} style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]} />
-                        </TouchableOpacity>
+                        <ZoomImage
+                            source={{uri: row[0].url}}
+                            imgStyle={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            duration={200}
+                            enableScaling={false}
+                        />
                     </View>
                     <View key={row[1].url} style={styles.flexCol}>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[1].url) }}>
-                                <Image source={{ uri: row[1].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[1].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                     </View>
                 </View>
-            )
-
+            );
         }
         else if (row.length == 3) {
             return (
                 <View key={row[0].url} style={styles.alignCenter}>
                     <View key={row[0].url} style={[styles.expandedView, { borderRadius: this.props.borderRadius }]}>
-                        <TouchableOpacity onPress={() => { this.photoPopupToggle(row[0].url) }}>
-                            <Image source={{ uri: row[0].url }} style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]} />
-                        </TouchableOpacity>
+                        <ZoomImage
+                            source={{uri: row[0].url}}
+                            imgStyle={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            duration={200}
+                            enableScaling={false}
+                        />
                     </View>
                     <View key={row[1].url} style={styles.flexCol}>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[1].url) }}>
-                                <Image source={{ uri: row[1].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[1].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[2].url) }}>
-                                <Image source={{ uri: row[2].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[2].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                     </View>
                 </View>
-            )
-
+            );
         }
-
     }
     renderPhotoRow3(row) {
-
         if (row.length == 1) {
             return (
                 <View key={row[0].url} style={styles.alignCenter}>
                     <View key={row[0].url} style={styles.flexCol}>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[0].url) }}>
-                                <Image source={{ uri: row[0].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[0].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
-
                     </View>
                 </View>
-            )
+            );
         }
         else if (row.length == 2) {
             return (
                 <View key={row[0].url} style={styles.alignCenter}>
                     <View key={row[0].url} style={styles.flexCol}>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[0].url) }}>
-                                <Image source={{ uri: row[0].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[0].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                         <View key={row[1].url} style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[1].url) }}>
-                                <Image source={{ uri: row[1].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[1].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                     </View>
                 </View>
-            )
-
+            );
         }
         else if (row.length == 3) {
             return (
                 <View key={row[0].url} style={styles.alignCenter}>
-
                     <View style={styles.flexCol}>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[0].url) }}>
-                                <Image source={{ uri: row[0].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[0].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                         <View style={[styles.photoView, { borderRadius: this.props.borderRadius }]}>
-                            <TouchableOpacity onPress={() => { this.photoPopupToggle(row[1].url) }}>
-                                <Image source={{ uri: row[1].url }} style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]} />
-                            </TouchableOpacity>
+                            <ZoomImage
+                                source={{uri: row[1].url}}
+                                imgStyle={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                style={[styles.ImageStyle, { borderRadius: this.props.borderRadius }]}
+                                duration={200}
+                                enableScaling={false}
+                            />
                         </View>
                     </View>
                     <View style={[styles.expandedView, { borderRadius: this.props.borderRadius }]}>
-                        <TouchableOpacity onPress={() => { this.photoPopupToggle(row[2].url) }}>
-                            <Image source={{ uri: row[2].url }} style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]} />
-                        </TouchableOpacity>
+                        <ZoomImage
+                            source={{uri: row[2].url}}
+                            imgStyle={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            style={[styles.ImageStyle, styles.expandedImage, { borderRadius: this.props.borderRadius }]}
+                            duration={200}
+                            enableScaling={false}
+                        />
                     </View>
                 </View>
-            )
-
+            );
         }
-
     }
-
     renderGrid() {
         return (
             <View>
-                {this.renderChunk()}
+                { this.renderChunk() }
             </View>
-        )
+        );
     }
-
     render() {
-
         return (
             <View style={[styles.container]}>
-                {this.renderGrid()}
-                <View >
-                    <Modal
-                        animationType={"fade"}
-                        transparent={false}
-                        onRequestClose={() => { }}
-                        visible={this.state.modalVisible}>
-                        <TouchableOpacity
-                            onPress={() => { this.photoPopupToggle() }}
-                            underlayColor='transparent'
-                            style={{backgroundColor: 'black'}}>
-                            <Image
-                                source={{ uri: this.state.photoUrl }}
-                                onPress={() => { this.photoPopupToggle() }}
-                                style={{
-                                    width: Dimensions.get('window').width,
-                                    height: Dimensions.get('window').height,
-                                    resizeMode: 'contain',
-                                    alignSelf: 'center',
-                                }} />
-                        </TouchableOpacity>
-                    </Modal>
-                </View>
+                { this.renderGrid() }
             </View>
-        )
+        );
     }
-
 }
 
-/*Styles*/
-
 const styles = {
-
     container: {
         flex: 1,
         paddingTop: 20,
@@ -251,7 +243,6 @@ const styles = {
         height: 120,
         resizeMode: 'cover'
     },
-
     flexCol: {
         flexDirection: 'column',
         flex: 1
@@ -265,7 +256,6 @@ const styles = {
         width: Dimensions.get('window').width - 20,
         paddingRight: 5
     },
-
     photoView: {
         height: 120,
         flex: 2,
@@ -284,7 +274,6 @@ const styles = {
     expandedImage: {
         height: 249,
     },
-
 }
 
 export { PhotoGrid };
